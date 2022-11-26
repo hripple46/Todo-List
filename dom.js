@@ -1,11 +1,11 @@
 function displayTodo(a) {
-  let body = document.body;
+  let rightColumn = document.querySelector("#rightColumn");
   const todoCard = document.createElement("div");
   for (let i in a) {
     let text = document.createElement("p");
     text.innerText = `${a[i]}`;
     todoCard.appendChild(text);
   }
-  body.appendChild(todoCard);
+  rightColumn.appendChild(todoCard);
 }
 export { displayTodo };

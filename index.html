@@ -10,26 +10,37 @@
     <script type="module" src="main.js"></script>
   </head>
   <body>
-    <div class="container-fluid">
-        <form>
-          <div class="row">
-              <div class="col"><label for="todoTitle">Task: </label></div>
-              <div class="col"><input type="text" id="title" name="todoTitle" /></div>
-          </div>
-          <div class="row">
-              <div class="col"><label for="todoDescription">Description: </label></div>
-              <div class="col"><input type="text" id="description" name="todoDescription" /></div>
-          </div>
-          <div class="row">
-              <div class="col"><label for="todoDueDate">Due Date: </label></div>
-              <div class="col"><input type="date" id="date" name="todoDueDate" /></div>
-          </div>
-          <div class="row">
-              <div class="col"><label for="todoPriority">Priority: </label></div>
-              <div class="col"><input type="number" id="number" name="todoPriority" /></div>
-          </div>
-          <button type="button" id="submit">Submit</button>
-        </form>
+    <div class="container">
+        <div class="row">
+    <div class="d-flex" id="navBar">
+        <button type="button" class="btn btn-outline-primary ms-auto" id="popupForm">+</button>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-4"><p>Here are where the projects will go.</p></div>
+    <div class="col-8 position-relative" id="rightColumn">
+        <div class="container-fluid d-none position-absolute" id="form">
+            <form class="mt-2 mb-2">
+              <div class="row">
+                  <div class="col"><label for="todoTitle">Task: </label></div>
+                  <div class="col"><input type="text" id="title" name="todoTitle" /></div>
+              </div>
+              <div class="row">
+                  <div class="col"><label for="todoDescription">Description: </label></div>
+                  <div class="col"><input type="text" id="description" name="todoDescription" /></div>
+              </div>
+              <div class="row">
+                  <div class="col"><label for="todoDueDate">Due Date: </label></div>
+                  <div class="col"><input type="date" id="date" name="todoDueDate" /></div>
+              </div>
+              <div class="row">
+                  <div class="col"><label for="todoPriority">Priority: </label></div>
+                  <div class="col"><input type="number" id="number" name="todoPriority" /></div>
+              </div>
+              <button type="button" class="btn btn-success" id="submit">Submit</button>
+            </form>
+        </div>
+    </div>
     </div>
   </body>
 </html>

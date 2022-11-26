@@ -16,4 +16,17 @@ submit.addEventListener("click", () => {
 
   displayTodo(newItem);
   document.querySelector("form").reset();
+  document
+    .querySelector("#form")
+    .setAttribute("class", "container-fluid d-none");
+});
+
+const popupForm = document.querySelector("#popupForm");
+popupForm.addEventListener("click", () => {
+  document
+    .querySelector("#form")
+    .setAttribute(
+      "class",
+      "container-fluid d-block position-absolute bg-warning bg-opacity-75 shadow-lg rounded mt-1"
+    );
 });
