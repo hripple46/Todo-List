@@ -1,20 +1,26 @@
 //object constructor for todo items
+let completeList = [];
+
 import { todoItem } from "./todoObject.js";
-import { displayTodo } from "./dom.js";
+import { displayTodo, resetDisplay } from "./dom.js";
 import { pullData, todoInput } from "./pullUserData.js";
 
 //event listener for user submission
 const submit = document.querySelector("#submit");
 submit.addEventListener("click", () => {
+  resetDisplay();
   pullData();
+  console.log(completeList);
   let newItem = todoItem(
     todoInput[0],
     todoInput[1],
     todoInput[2],
     todoInput[3]
   );
-
-  displayTodo(newItem);
+  completeList.push(newItem);
+  for (let i = 0; i < completeList.length; i++) {
+    displayTodo(completeList[i]);
+  }
   document.querySelector("form").reset();
   document
     .querySelector("#form")
