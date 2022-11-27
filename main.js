@@ -4,6 +4,7 @@ let completeList = [];
 import { todoItem } from "./todoObject.js";
 import { displayTodo, resetDisplay } from "./dom.js";
 import { pullData, todoInput } from "./pullUserData.js";
+import { setID } from "./setSpecificID.js";
 
 //event listener for new folder
 const newForm = document.querySelector("#newForm");
@@ -24,6 +25,7 @@ submit.addEventListener("click", () => {
   for (let i = 0; i < completeList.length; i++) {
     displayTodo(completeList[i]);
   }
+  setID(completeList);
   document.querySelector("form").reset();
   document
     .querySelector("#form")
