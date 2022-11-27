@@ -5,6 +5,9 @@ import { todoItem } from "./todoObject.js";
 import { displayTodo, resetDisplay } from "./dom.js";
 import { pullData, todoInput } from "./pullUserData.js";
 
+//event listener for new folder
+const newForm = document.querySelector("#newForm");
+
 //event listener for user submission
 const submit = document.querySelector("#submit");
 submit.addEventListener("click", () => {
