@@ -8,37 +8,44 @@
   }
   rightColumn.appendChild(todoCard);
 }*/
+
 function resetDisplay() {
-  let existingItems = document.querySelectorAll(
-    ".border.rounded-pill.d-flex.align-items-center"
-  );
+  let existingItems = document.querySelectorAll(".todoCard");
+  let existingDeleteBtns = document.querySelectorAll(".deleteBtn");
+  let existingCollapse = document.querySelectorAll(".collapse");
+
   for (let i = 0; i < existingItems.length; i++) {
     existingItems[i].remove();
+    existingCollapse[i].remove();
+    existingDeleteBtns[i].remove();
   }
 }
 
 function displayTodo(a) {
   let rightColumn = document.querySelector("#rightColumn");
   const todoCard = document.createElement("div");
-  todoCard.setAttribute(
-    "class",
-    "border rounded-pill d-flex align-items-center mt-4"
-  );
+  todoCard.setAttribute("class", "todoCard");
   for (let i in a) {
     let text = document.createElement("div");
     text.setAttribute("class", "ms-2");
     text.innerText = `${a[i]}`;
     todoCard.appendChild(text);
     let deleteBtn = document.createElement("button");
-    deleteBtn.setAttribute(
-      "class",
-      "btn btn-outline-danger ms-auto mt-2 mb-2 me-3 fs-6"
-    );
+    deleteBtn.setAttribute("class", "deleteBtn");
     deleteBtn.innerText = "X";
     todoCard.appendChild(deleteBtn);
+
     break;
   }
+  //add Todo to display
+
   rightColumn.appendChild(todoCard);
+
+  //add collapsible to html
+  let content = document.createElement("div");
+  content.setAttribute("class", "collapse");
+  content.innerHTML = "<p>Hello There</p>";
+  rightColumn.appendChild(content);
 }
 
 export { displayTodo, resetDisplay };

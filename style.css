@@ -2,3 +2,13 @@ html,
 body {
   height: 100%;
 }
+#form {
+  display: none;
+}
+.collapse {
+  display: none;
+}
+.todoCard {
+  width: 300px;
+  height: 100px;
+}
