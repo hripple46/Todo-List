@@ -1,6 +1,5 @@
 //object constructor for todo items
 let completeList = [];
-let collapseClass = [];
 
 import { todoItem } from "./todoObject.js";
 import { displayTodo, resetDisplay } from "./dom.js";
@@ -47,6 +46,7 @@ function deleteTodo() {
         displayTodo(completeList[i]);
       }
       setID();
+      collapseDetails();
       deleteTodo();
     });
   }
@@ -65,14 +65,10 @@ function collapseDetails() {
         content.style.display = "none";
       }
     });
-    let content = document.querySelector(`#content${[i]}`);
-    collapseClass.push(`${content.classList}`);
   }
-  console.log(collapseClass);
 }
 
 const popupForm = document.querySelector("#popupForm");
 popupForm.addEventListener("click", () => {
-  document.querySelector("#form").style.cssText =
-    "display:block;position:absolute";
+  document.querySelector("#form").style.cssText = "display:block";
 });

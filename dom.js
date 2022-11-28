@@ -27,7 +27,7 @@ function displayTodo(a) {
   todoCard.setAttribute("class", "todoCard");
   for (let i in a) {
     let text = document.createElement("div");
-    text.setAttribute("class", "ms-2");
+    text.setAttribute("class", "task");
     text.innerText = `${a[i]}`;
     todoCard.appendChild(text);
     let deleteBtn = document.createElement("button");
@@ -45,6 +45,7 @@ function displayTodo(a) {
   let content = document.createElement("div");
   content.setAttribute("class", "collapse");
   content.innerHTML = "<p>Hello There</p>";
+  content.style.display = "none";
   rightColumn.appendChild(content);
 }
 

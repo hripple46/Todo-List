@@ -5,48 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="main.js" defer></script>
   </head>
-    <script type="module" src="main.js"></script>
-  </head>
-  <body >
-    <div class="container h-100">
-        <div class="row">
-    <div class="d-flex" id="navBar">
-      <button type="button" class="btn btn-outline-primary me-auto mt-2" id="newFolder">+</button>
 
-        <button type="button" class="btn btn-outline-primary ms-auto mt-2" id="popupForm">+</button>
-    </div>
-</div>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div id="navBar">
+          <button type="button" class="btn" id="newFolder">+</button>
 
-      <div class="row d-flex align-items-stretch h-100">
-          <div class="col-4 border-end"><p class="mt-4">Here are where the projects will go.</p></div>
-          
-    
-    <div class="col-8 position-relative border-left border-primary" id="rightColumn">
-        <div class="container-fluid d-none position-absolute ms-auto" id="form">
+          <button type="button" class="btn" id="popupForm">+</button>
+        </div>
+      </div>
+
+      
+        <div class="projects">
+          <p class="mt-4">Here are where the projects will go.</p>
+        </div>
+
+        <div
+          class="col-8 position-relative border-left border-primary"
+          id="rightColumn"
+        >
+          <div
+            
+            id="form"
+          >
             <form class="mt-2 mb-2">
               <div class="row">
-                  <div class="col"><label for="todoTitle">Task: </label></div>
-                  <div class="col"><input type="text" id="title" name="todoTitle" /></div>
+                <div class="col"><label for="todoTitle">Task: </label></div>
+                <div class="col">
+                  <input type="text" id="title" name="todoTitle" />
+                </div>
               </div>
               <div class="row">
-                  <div class="col"><label for="todoDescription">Description: </label></div>
-                  <div class="col"><input type="text" id="description" name="todoDescription" /></div>
+                <div class="col">
+                  <label for="todoDescription">Description: </label>
+                </div>
+                <div class="col">
+                  <input type="text" id="description" name="todoDescription" />
+                </div>
               </div>
               <div class="row">
-                  <div class="col"><label for="todoDueDate">Due Date: </label></div>
-                  <div class="col"><input type="date" id="date" name="todoDueDate" /></div>
+                <div class="col">
+                  <label for="todoDueDate">Due Date: </label>
+                </div>
+                <div class="col">
+                  <input type="date" id="date" name="todoDueDate" />
+                </div>
               </div>
               <div class="row">
-                  <div class="col"><label for="todoPriority">Priority: </label></div>
-                  <div class="col"><input type="number" id="number" name="todoPriority" /></div>
+                <div class="col">
+                  <label for="todoPriority">Priority: </label>
+                </div>
+                <div class="col">
+                  <input type="number" id="number" name="todoPriority" />
+                </div>
               </div>
-              <button type="button" class="btn btn-success" id="submit">Submit</button>
+              <button type="button" class="btn btn-success" id="submit">
+                Submit
+              </button>
             </form>
+          </div>
         </div>
-    </div>
-    </div>
+      </div>
     </div>
   </body>
 </html>
