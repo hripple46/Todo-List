@@ -14,7 +14,6 @@ const submit = document.querySelector("#submit");
 submit.addEventListener("click", () => {
   resetDisplay();
   pullData();
-  console.log(completeList);
   let newItem = todoItem(
     todoInput[0],
     todoInput[1],
@@ -25,12 +24,33 @@ submit.addEventListener("click", () => {
   for (let i = 0; i < completeList.length; i++) {
     displayTodo(completeList[i]);
   }
-  setID(completeList);
+  setID();
+  deleteTodo();
+  console.log(completeList);
   document.querySelector("form").reset();
   document
     .querySelector("#form")
     .setAttribute("class", "container-fluid d-none");
 });
+
+//this function adds delete functionality
+function deleteTodo() {
+  let deleteBtn = document.querySelectorAll(
+    ".btn.btn-outline-danger.ms-auto.mt-2.mb-2.me-3.fs-6"
+  );
+  for (let j = 0; j < deleteBtn.length; j++) {
+    deleteBtn[j].addEventListener("click", () => {
+      document.querySelector(`#todo${[j]}`).remove();
+      completeList.splice(j, 1);
+      resetDisplay();
+      for (let i = 0; i < completeList.length; i++) {
+        displayTodo(completeList[i]);
+      }
+      setID();
+      deleteTodo();
+    });
+  }
+}
 
 const popupForm = document.querySelector("#popupForm");
 popupForm.addEventListener("click", () => {
