@@ -32,7 +32,11 @@ function displayTodo(a) {
     todoCard.appendChild(text);
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("class", "deleteBtn");
-    deleteBtn.innerText = "X";
+    let icon = document.createElement("span");
+    icon.setAttribute("class", "material-symbols-outlined");
+    icon.innerText = "Close";
+    deleteBtn.appendChild(icon);
+
     todoCard.appendChild(deleteBtn);
 
     break;

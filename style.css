@@ -2,6 +2,13 @@ html,
 body {
   height: 100%;
 }
+body {
+  font-family: "Comfortaa", cursive;
+}
+button {
+  box-shadow: none;
+  border: none;
+}
 .container {
   height: 100%;
   display: grid;
@@ -9,9 +16,10 @@ body {
   grid-template-rows: 1fr 10fr;
 }
 .todoCard {
+  box-shadow: 5px 2px 5px 2px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;
-  border: 1px solid#848484;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   margin-bottom: 24px;
 }
@@ -28,7 +36,67 @@ body {
   display: flex;
 }
 #popupForm {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-left: auto;
+  background-color: rgba(95, 173, 86, 0.2);
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+#popupForm:hover {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  background-color: rgba(95, 173, 86, 0.4);
+  border: 1px solid black;
+  border-radius: 50%;
+}
+#newFolder {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(95, 173, 86, 0.2);
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+
+#newFolder:hover {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(95, 173, 86, 0.4);
+  border: 1px solid black;
+  border-radius: 50%;
+}
+.deleteBtn {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(221, 28, 26, 0.1);
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+.deleteBtn:hover {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(221, 28, 26, 0.3);
+  border: 1px solid black;
+  border-radius: 50%;
 }
 
 #rightColumn {
@@ -64,4 +132,8 @@ form {
 
 .projects {
   grid-column: 1/2;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
