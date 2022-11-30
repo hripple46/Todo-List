@@ -47,8 +47,17 @@ function displayTodo(a) {
 
   //add collapsible to html
   let content = document.createElement("div");
-  content.setAttribute("class", "collapse");
-  content.innerHTML = "<p>Hello There</p>";
+
+  for (let j in a) {
+    if (j == "title") {
+      continue;
+    } else {
+      content.setAttribute("class", "collapse");
+      let p = document.createElement("p");
+      p.innerText = `${j}: ${a[j]}`;
+      content.appendChild(p);
+    }
+  }
   content.style.display = "none";
   rightColumn.appendChild(content);
 }

@@ -1,5 +1,5 @@
-const todoItem = (title, description, dueDate, priority) => {
-  return { title, description, dueDate, priority };
+const todoItem = (title, Description, Due, Priority) => {
+  return { title, Description, Due, Priority };
 };
 
 export { todoItem };
