@@ -28,11 +28,11 @@
         <button type="button" class="btn" id="newFolder">
           <span class="material-symbols-outlined"> add </span>
         </button>
-        <div id="inputProject">
+        <form id="inputProject">
           <label for="projectName">Project Name: </label>
           <input type="text" id="newProjectName" name="projectName" />
           <button id="submitProject" type="button">Submit</button>
-        </div>
+        </form>
 
         <button type="button" class="btn" id="popupForm">
           <span class="material-symbols-outlined"> add </span>
@@ -50,43 +50,41 @@
         class="col-8 position-relative border-left border-primary"
         id="rightColumn"
       >
-        <div id="form">
-          <form class="mt-2 mb-2">
-            <div class="row2">
-              <div class="col"><label for="todoTitle">Task: </label></div>
-              <div class="col">
-                <input type="text" id="title" name="todoTitle" />
-              </div>
+        <form id="form">
+          <div class="row2">
+            <div class="col"><label for="todoTitle">Task: </label></div>
+            <div class="col">
+              <input type="text" id="title" name="todoTitle" />
             </div>
-            <div class="row2">
-              <div class="col">
-                <label for="todoDescription">Description: </label>
-              </div>
-              <div class="col">
-                <input type="text" id="description" name="todoDescription" />
-              </div>
+          </div>
+          <div class="row2">
+            <div class="col">
+              <label for="todoDescription">Description: </label>
             </div>
-            <div class="row2">
-              <div class="col">
-                <label for="todoDueDate">Due Date: </label>
-              </div>
-              <div class="col">
-                <input type="date" id="date" name="todoDueDate" />
-              </div>
+            <div class="col">
+              <input type="text" id="description" name="todoDescription" />
             </div>
-            <div class="row2">
-              <div class="col">
-                <label for="todoPriority">Priority: </label>
-              </div>
-              <div class="col">
-                <input type="number" id="number" name="todoPriority" />
-              </div>
+          </div>
+          <div class="row2">
+            <div class="col">
+              <label for="todoDueDate">Due Date: </label>
             </div>
-            <button type="button" class="btn btn-success" id="submit">
-              Submit
-            </button>
-          </form>
-        </div>
+            <div class="col">
+              <input type="date" id="date" name="todoDueDate" />
+            </div>
+          </div>
+          <div class="row2">
+            <div class="col">
+              <label for="todoPriority">Priority: </label>
+            </div>
+            <div class="col">
+              <input type="number" id="number" name="todoPriority" />
+            </div>
+          </div>
+          <button type="button" class="btn btn-success" id="submit">
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   </body>

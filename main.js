@@ -1,16 +1,23 @@
 //object constructor for todo items
 let completeList = [];
+let projectList = [];
 
 import { todoItem } from "./todoObject.js";
 import { displayTodo, resetDisplay } from "./dom.js";
 import { pullData, todoInput } from "./pullUserData.js";
 import { setID } from "./setSpecificID.js";
-import { createArray, projectBtn } from "./projectCreate.js";
+import { getProjectName, projectBtn } from "./projectCreate.js";
 //event listener for new folder
 const newForm = document.querySelector("#newForm");
 
 //creates new project
-createArray();
+projectBtn.addEventListener("click", () => {
+  document.querySelector("#inputProject").style.display = "flex";
+});
+submitProject.addEventListener("click", () => {
+  getProjectName(projectList);
+});
+
 //event listener for user submission
 const submit = document.querySelector("#submit");
 submit.addEventListener("click", () => {
@@ -29,7 +36,7 @@ submit.addEventListener("click", () => {
   setID();
   deleteTodo();
   console.log(completeList);
-  document.querySelector("form").reset();
+  document.querySelector("#form").reset();
   document.querySelector("#form").style.display = "none";
   collapseDetails();
 });
