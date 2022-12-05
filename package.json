@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "eslint": "^8.29.0",
+    "normalize.css": "^8.0.1"
+  }
+}

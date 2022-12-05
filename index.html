@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/normalize.css/normalize.css" />
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -34,7 +35,7 @@
           <button id="submitProject" type="button">Submit</button>
         </form>
 
-        <button type="button" class="btn" id="popupForm">
+        <button type="button" class="btn" id="displayForm">
           <span class="material-symbols-outlined"> add </span>
         </button>
       </div>
@@ -46,15 +47,13 @@
         <div class="projectContainer"></div>
       </div>
 
-      <div
-        class="col-8 position-relative border-left border-primary"
-        id="rightColumn"
-      >
-        <form id="form">
+      <div id="rightColumn">
+        <div id="todoItemForm">
+        <form id="todoForm">
           <div class="row2">
             <div class="col"><label for="todoTitle">Task: </label></div>
             <div class="col">
-              <input type="text" id="title" name="todoTitle" />
+              <input type="text" class="todoInput" id="title" name="todoTitle" />
             </div>
           </div>
           <div class="row2">
@@ -62,7 +61,7 @@
               <label for="todoDescription">Description: </label>
             </div>
             <div class="col">
-              <input type="text" id="description" name="todoDescription" />
+              <input type="text" class="todoInput" id="description" name="todoDescription" />
             </div>
           </div>
           <div class="row2">
@@ -70,7 +69,7 @@
               <label for="todoDueDate">Due Date: </label>
             </div>
             <div class="col">
-              <input type="date" id="date" name="todoDueDate" />
+              <input type="date" class="todoInput" id="date" name="todoDueDate" />
             </div>
           </div>
           <div class="row2">
@@ -78,14 +77,13 @@
               <label for="todoPriority">Priority: </label>
             </div>
             <div class="col">
-              <input type="number" id="number" name="todoPriority" />
+              <input type="number" class="todoInput" id="number" name="todoPriority" />
             </div>
           </div>
           <button type="button" class="btn btn-success" id="submit">
             Submit
           </button>
         </form>
-      </div>
     </div>
   </body>
 </html>

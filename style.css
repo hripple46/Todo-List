@@ -47,7 +47,7 @@ button {
   display: flex;
   padding: 12px;
 }
-#popupForm {
+#displayForm {
   height: 30px;
   width: 30px;
   display: flex;
@@ -58,7 +58,7 @@ button {
   border: 1px solid transparent;
   border-radius: 50%;
 }
-#popupForm:hover {
+#displayForm:hover {
   height: 30px;
   width: 30px;
   display: flex;
@@ -117,7 +117,7 @@ button {
   padding-left: 12px;
   margin-top: 12px;
 }
-#form {
+#todoItemForm {
   position: fixed;
   display: none;
   margin-left: auto;
@@ -129,11 +129,11 @@ button {
   width: 40%;
   background-color: rgba(236, 186, 130, 0.6);
 }
-#form .row2 {
+#todoItemForm .row2 {
   padding-left: 12px;
   margin-top: 12px;
 }
-#form button {
+#todoItemForm button {
   margin-left: 12px;
   margin-top: 12px;
 }
