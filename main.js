@@ -18,7 +18,9 @@ import {
   setNewListName,
   newListName,
   addNewListNametoArray,
+  eventListenerListNames,
 } from "./addLists.js";
+import { addIDTodoCard, addIDDropdownList } from "./setSpecificID.js";
 
 const displayForm = document.querySelector("#displayForm");
 let hideForm = document.querySelector("#submit");
@@ -29,11 +31,13 @@ const listInput = document.querySelector("#newProjectName");
 let defaultList = [];
 let listNames = [];
 
+//event listener for opening new item form
 displayForm.addEventListener("click", () => {
   //show form
   displayTodoItemForm();
 });
 
+//event listener for new todo item submission
 hideForm.addEventListener("click", () => {
   //reset the webpage to avoid duplicate todo items
   resetRightColumn();
@@ -49,6 +53,11 @@ hideForm.addEventListener("click", () => {
   displayDefaultList(defaultList);
   addDropdownList(defaultList);
   addListNameOption(listNames);
+  //add unique add to todoItem
+  addIDTodoCard();
+  //add unique ID to dropdownlist
+  addIDDropdownList();
+  eventListenerListNames(defaultList);
 });
 
 //event listener for new-list button
@@ -60,10 +69,11 @@ newList.addEventListener("click", () => {
 newListSubmit.addEventListener("click", () => {
   hideNewListForm();
   setNewListName(listInput.value);
+  //reset dropdown options to avoid duplicates
   resetDropdown();
   addNewListNametoArray(listNames);
   addDropdownList(defaultList);
 
   addListNameOption(listNames);
-  console.log(listNames);
+  eventListenerListNames(defaultList);
 });

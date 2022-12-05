@@ -6,7 +6,8 @@ function displayDefaultList(x) {
     //loop through each object within the list
     for (let key in x[i]) {
       //add obbject properties to todo item
-      if (x[i][key] == null) {
+      //skip todo list property
+      if ([key] == "list") {
         continue;
       }
       let todoItemContent = document.createElement("p");
@@ -26,6 +27,10 @@ function addDropdownList(a) {
     let dropdownList = document.createElement("select");
     dropdownList.setAttribute("class", "dropdownList");
     dropdownList.setAttribute("name", "dropdownList");
+    let option = document.createElement("option");
+    option.setAttribute("value", "Default");
+    option.innerText = "Default";
+    dropdownList.appendChild(option);
     let dropdownLabel = document.createElement("label");
     dropdownLabel.setAttribute("for", "dropdownList");
     dropdownLabel.setAttribute("class", "dropdownLabel");
