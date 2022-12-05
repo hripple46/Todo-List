@@ -182,3 +182,6 @@ form {
 select {
   width: 100px;
 }
+.sideBarListItem {
+  z-index: 1;
+}

@@ -12,7 +12,7 @@ import {
   resetDropdown,
   addDropdownList,
   addDeleteBtn,
-  removeTodoItem,
+  displayUniqueList,
 } from "./dom.js";
 import {
   displayNewListForm,
@@ -21,6 +21,7 @@ import {
   newListName,
   addNewListNametoArray,
   eventListenerListNames,
+  displayList,
 } from "./addLists.js";
 import {
   addIDTodoCard,
@@ -37,6 +38,7 @@ const listInput = document.querySelector("#newProjectName");
 
 let defaultList = [];
 let listNames = [];
+let selectedName = "";
 
 //event listener for opening new item form
 displayForm.addEventListener("click", () => {
@@ -67,11 +69,42 @@ hideForm.addEventListener("click", () => {
   addIDDropdownList();
   addIDDeleteBtn();
   eventListenerListNames(defaultList);
-  //removes DOM todo item on click
+  //removes DOM todo item on click, invoking functions as parameters keeps page dynamic on deletion of items
   removeItemFromArray(defaultList);
-  removeTodoItem();
+  removeTodoItem(
+    resetRightColumn,
+    displayDefaultList,
+    addDropdownList,
+    addListNameOption,
+    addDeleteBtn,
+    addIDTodoCard,
+    addIDDeleteBtn,
+    addIDDropdownList,
+    eventListenerListNames,
+    removeItemFromArray
+  );
 });
-
+//this function deletes a card and resets page based on contents of array after splicing deleted object
+function removeTodoItem(a, b, c, d, e, f, g, h, j, k) {
+  let deleteBtns = document.querySelectorAll(".deleteBtn");
+  for (let i = 0; i < deleteBtns.length; i++) {
+    deleteBtns[i].addEventListener("click", () => {
+      document.querySelector(`#todoItem${i}`).remove();
+      a();
+      b(defaultList);
+      c(defaultList);
+      d(listNames);
+      e();
+      f();
+      g();
+      h();
+      j(defaultList);
+      k(defaultList);
+      removeTodoItem(a, b, c, d, e, f, g, h, j, k);
+      return;
+    });
+  }
+}
 //event listener for new-list button
 newList.addEventListener("click", () => {
   //display form
@@ -81,6 +114,7 @@ newList.addEventListener("click", () => {
 newListSubmit.addEventListener("click", () => {
   hideNewListForm();
   setNewListName(listInput.value);
+  displayList(listInput.value);
   //reset dropdown options to avoid duplicates
   resetDropdown();
   addNewListNametoArray(listNames);
@@ -89,4 +123,22 @@ newListSubmit.addEventListener("click", () => {
 
   addListNameOption(listNames);
   eventListenerListNames(defaultList);
+  showListItems(resetRightColumn);
 });
+
+function showListItems(resetDisplay) {
+  let sideBarLists = document.querySelectorAll("p");
+
+  for (let i = 0; i < sideBarLists.length; i++) {
+    sideBarLists[i].addEventListener("click", () => {
+      let nameofList = sideBarLists[i].innerText;
+      console.log(nameofList);
+      selectedName = "";
+      selectedName = nameofList;
+      console.log(selectedName);
+      console.log("Hi");
+      resetDisplay();
+      displayUniqueList(defaultList, selectedName);
+    });
+  }
+}

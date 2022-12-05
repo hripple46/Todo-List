@@ -19,20 +19,50 @@ function displayDefaultList(x) {
     document.querySelector("#rightColumn").appendChild(newItem);
   }
 }
+function displayUniqueList(x, y) {
+  //loop through default list
+  for (let i = 0; i < x.length; i++) {
+    if (x[i].list != y) {
+      continue;
+    } else {
+      let newItems = document.createElement("div");
+      newItems.setAttribute("class", "todoCard");
+      //loop through each object within the list
+      for (let key in x[i]) {
+        //add obbject properties to todo item
+        //skip todo list property
+        if ([key] == "list") {
+          continue;
+        }
+        let todoItemContent = document.createElement("p");
+        todoItemContent.innerText = `${x[i][key]}`;
+        newItems.appendChild(todoItemContent);
+      }
+
+      //add todo item to body
+      document.querySelector("#rightColumn").appendChild(newItems);
+    }
+  }
+  addDeleteBtn();
+  let s = document.querySelectorAll(".todoCard");
+  addDropdownList(s);
+  let options = document.querySelectorAll(".options");
+  let lists = document.querySelectorAll(".dropdownList");
+  for (let x = 0; x < lists.length; x++) {
+    for (let j = 0; j < options.length; j++) {
+      let newListOption = document.createElement("option");
+      newListOption.setAttribute("value", options[j].innerText);
+      newListOption.innerText = `${options[j].innerText}`;
+      lists[x].appendChild(newListOption);
+    }
+  }
+}
 function addDeleteBtn() {
   let todoItem = document.querySelectorAll(".todoCard");
   for (let i = 0; i < todoItem.length; i++) {
     let deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("class", "deleteBtn");
     todoItem[i].appendChild(deleteBtn);
-  }
-}
-function removeTodoItem() {
-  let deleteBtns = document.querySelectorAll(".deleteBtn");
-  for (let i = 0; i < deleteBtns.length; i++) {
-    deleteBtns[i].addEventListener("click", () => {
-      document.querySelector(`#todoItem${i}`).remove();
-    });
   }
 }
 
@@ -85,6 +115,7 @@ function resetRightColumn() {
     todoItems[i].remove();
   }
 }
+
 export {
   displayDefaultList,
   resetRightColumn,
@@ -92,5 +123,5 @@ export {
   resetDropdown,
   addDropdownList,
   addDeleteBtn,
-  removeTodoItem,
+  displayUniqueList,
 };

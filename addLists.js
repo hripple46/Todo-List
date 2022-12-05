@@ -16,6 +16,17 @@ function addNewListNametoArray(y) {
   y.push(newListName);
 }
 
+function displayList(list) {
+  let sidebar = document.querySelector(".projectContainer");
+  let listElement = document.createElement("div");
+  listElement.setAttribute("class", "sidebarListItem");
+  let p = document.createElement("p");
+  p.innerText = `${list}`;
+  p.setAttribute("class", "options");
+  listElement.appendChild(p);
+  sidebar.appendChild(listElement);
+}
+
 function eventListenerListNames(f) {
   let dropdown = document.querySelectorAll("select");
   let dropdownOptions = document.querySelectorAll("option");
@@ -38,4 +49,5 @@ export {
   newListName,
   addNewListNametoArray,
   eventListenerListNames,
+  displayList,
 };
