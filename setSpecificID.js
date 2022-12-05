@@ -12,5 +12,11 @@ function addIDDropdownList() {
     dropdownLists[i].setAttribute("id", `dropDownList${i}`);
   }
 }
+function addIDDeleteBtn() {
+  let deleteBtns = document.querySelectorAll(".deleteBtn");
+  for (let i = 0; i < deleteBtns.length; i++) {
+    deleteBtns[i].setAttribute("id", `deleteBtn${i}`);
+  }
+}
 
-export { addIDTodoCard, addIDDropdownList };
+export { addIDTodoCard, addIDDropdownList, addIDDeleteBtn };

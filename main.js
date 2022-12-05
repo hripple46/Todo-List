@@ -11,6 +11,8 @@ import {
   addListNameOption,
   resetDropdown,
   addDropdownList,
+  addDeleteBtn,
+  removeTodoItem,
 } from "./dom.js";
 import {
   displayNewListForm,
@@ -20,7 +22,12 @@ import {
   addNewListNametoArray,
   eventListenerListNames,
 } from "./addLists.js";
-import { addIDTodoCard, addIDDropdownList } from "./setSpecificID.js";
+import {
+  addIDTodoCard,
+  addIDDropdownList,
+  addIDDeleteBtn,
+} from "./setSpecificID.js";
+import { removeItemFromArray } from "./arrayManipulation.js";
 
 const displayForm = document.querySelector("#displayForm");
 let hideForm = document.querySelector("#submit");
@@ -53,11 +60,16 @@ hideForm.addEventListener("click", () => {
   displayDefaultList(defaultList);
   addDropdownList(defaultList);
   addListNameOption(listNames);
+  addDeleteBtn();
   //add unique add to todoItem
   addIDTodoCard();
   //add unique ID to dropdownlist
   addIDDropdownList();
+  addIDDeleteBtn();
   eventListenerListNames(defaultList);
+  //removes DOM todo item on click
+  removeItemFromArray(defaultList);
+  removeTodoItem();
 });
 
 //event listener for new-list button
@@ -73,6 +85,7 @@ newListSubmit.addEventListener("click", () => {
   resetDropdown();
   addNewListNametoArray(listNames);
   addDropdownList(defaultList);
+  addIDDropdownList();
 
   addListNameOption(listNames);
   eventListenerListNames(defaultList);

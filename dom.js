@@ -19,6 +19,23 @@ function displayDefaultList(x) {
     document.querySelector("#rightColumn").appendChild(newItem);
   }
 }
+function addDeleteBtn() {
+  let todoItem = document.querySelectorAll(".todoCard");
+  for (let i = 0; i < todoItem.length; i++) {
+    let deleteBtn = document.createElement("button");
+    deleteBtn.setAttribute("class", "deleteBtn");
+    todoItem[i].appendChild(deleteBtn);
+  }
+}
+function removeTodoItem() {
+  let deleteBtns = document.querySelectorAll(".deleteBtn");
+  for (let i = 0; i < deleteBtns.length; i++) {
+    deleteBtns[i].addEventListener("click", () => {
+      document.querySelector(`#todoItem${i}`).remove();
+    });
+  }
+}
+
 function addDropdownList(a) {
   let newItem = document.querySelectorAll(".todoCard");
 
@@ -74,4 +91,6 @@ export {
   addListNameOption,
   resetDropdown,
   addDropdownList,
+  addDeleteBtn,
+  removeTodoItem,
 };
