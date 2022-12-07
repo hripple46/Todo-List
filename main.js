@@ -137,7 +137,7 @@ function removeTodoItemofUniqueList(hi, b, c, d, e, f, g, h, j, k) {
       j(defaultList);
       k(
         resetRightColumn,
-        displayDefaultList,
+        displayUniqueList,
         addDropdownList,
         addListNameOption,
         addDeleteBtn,
@@ -221,7 +221,7 @@ function showListItems() {
       removeItemFromArray(defaultList);
       removeTodoItemofUniqueList(
         resetRightColumn,
-        displayDefaultList,
+        displayUniqueList,
         addDropdownList,
         addListNameOption,
         addDeleteBtn,
