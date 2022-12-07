@@ -35,6 +35,8 @@ let hideForm = document.querySelector("#submit");
 const newList = document.querySelector("#newFolder");
 const newListSubmit = document.querySelector("#submitProject");
 const listInput = document.querySelector("#newProjectName");
+let todoCards = document.querySelectorAll(".todoCard");
+let defaultDom = document.querySelector("#defaultList");
 
 let defaultList = [];
 let listNames = [];
@@ -80,7 +82,6 @@ hideForm.addEventListener("click", () => {
     addIDTodoCard,
     addIDDeleteBtn,
     addIDDropdownList,
-    eventListenerListNames,
     removeItemFromArray
   );
 });
@@ -120,25 +121,99 @@ newListSubmit.addEventListener("click", () => {
   addNewListNametoArray(listNames);
   addDropdownList(defaultList);
   addIDDropdownList();
-
+  let x = document.querySelectorAll(".sidebarListItem");
+  removeEventListener(x);
   addListNameOption(listNames);
   eventListenerListNames(defaultList);
   showListItems(resetRightColumn);
 });
+function removeEventListener(a) {
+  for (let i = 0; i < a.length; i++) {
+    a[i].removeEventListener("click", () => {
+      let nameofList = sideBarLists[i].innerText;
+      nameofList;
+      selectedName = "";
+      selectedName = nameofList;
+      selectedName;
+      ("Hi");
+      resetRightColumn();
+      displayUniqueList(defaultList, selectedName);
+      eventListenerListNames(defaultList);
+      removeItemFromArray(defaultList);
+      removeTodoItem(
+        resetRightColumn,
+        displayDefaultList,
+        addDropdownList,
+        addListNameOption,
+        addDeleteBtn,
+        addIDTodoCard,
+        addIDDeleteBtn,
+        addIDDropdownList,
+        eventListenerListNames,
+        removeItemFromArray
+      );
+    });
+  }
+}
 
-function showListItems(resetDisplay) {
-  let sideBarLists = document.querySelectorAll("p");
+function showListItems() {
+  let sideBarLists = document.querySelectorAll(".sidebarListItem");
 
   for (let i = 0; i < sideBarLists.length; i++) {
     sideBarLists[i].addEventListener("click", () => {
       let nameofList = sideBarLists[i].innerText;
-      console.log(nameofList);
+      nameofList;
       selectedName = "";
       selectedName = nameofList;
-      console.log(selectedName);
-      console.log("Hi");
-      resetDisplay();
+      selectedName;
+      resetRightColumn();
       displayUniqueList(defaultList, selectedName);
+      eventListenerListNames(defaultList);
+      addDeleteBtn();
+      //add unique add to todoItem
+      addIDTodoCard();
+      //add unique ID to dropdownlist
+      addIDDropdownList();
+      addIDDeleteBtn();
+      removeItemFromArray(defaultList);
+      removeTodoItem(
+        resetRightColumn,
+        displayDefaultList,
+        addDropdownList,
+        addListNameOption,
+        addDeleteBtn,
+        addIDTodoCard,
+        addIDDeleteBtn,
+        addIDDropdownList,
+        eventListenerListNames,
+        removeItemFromArray
+      );
     });
   }
 }
+//function to show all tasks
+defaultDom.addEventListener("click", () => {
+  resetRightColumn();
+  displayDefaultList(defaultList);
+  addDropdownList(defaultList);
+  addListNameOption(listNames);
+  addDeleteBtn();
+  //add unique add to todoItem
+  addIDTodoCard();
+  //add unique ID to dropdownlist
+  addIDDropdownList();
+  addIDDeleteBtn();
+  //removes DOM todo item on click, invoking functions as parameters keeps page dynamic on deletion of items
+  removeItemFromArray(defaultList);
+  removeTodoItem(
+    resetRightColumn,
+    displayDefaultList,
+    addDropdownList,
+    addListNameOption,
+    addDeleteBtn,
+    addIDTodoCard,
+    addIDDeleteBtn,
+    addIDDropdownList,
+    removeItemFromArray
+  );
+});

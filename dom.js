@@ -43,7 +43,6 @@ function displayUniqueList(x, y) {
       document.querySelector("#rightColumn").appendChild(newItems);
     }
   }
-  addDeleteBtn();
   let s = document.querySelectorAll(".todoCard");
   addDropdownList(s);
   let options = document.querySelectorAll(".options");
@@ -75,9 +74,12 @@ function addDropdownList(a) {
     dropdownList.setAttribute("class", "dropdownList");
     dropdownList.setAttribute("name", "dropdownList");
     let option = document.createElement("option");
+    let selectedOption = document.createElement("option");
+
     option.setAttribute("value", "Default");
     option.innerText = "Default";
     dropdownList.appendChild(option);
+
     let dropdownLabel = document.createElement("label");
     dropdownLabel.setAttribute("for", "dropdownList");
     dropdownLabel.setAttribute("class", "dropdownLabel");
