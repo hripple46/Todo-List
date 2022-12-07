@@ -244,7 +244,6 @@ defaultDom.addEventListener("click", () => {
   resetRightColumn();
   let x = document.querySelectorAll(".sidebarListItem");
 
-  removeEventListener(x);
   displayDefaultList(defaultList);
   addDropdownList(defaultList);
   addListNameOption(listNames);
@@ -267,8 +266,8 @@ defaultDom.addEventListener("click", () => {
     addIDTodoCard,
     addIDDeleteBtn,
     addIDDropdownList,
-    removeTodoItem,
-    removeItemFromArray
+    removeItemFromArray,
+    removeTodoItem
   );
   console.log(defaultList);
 });

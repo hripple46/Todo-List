@@ -33,6 +33,7 @@ button {
   margin-right: 12px;
   margin-top: 12px;
   margin-bottom: 12px;
+  order: 1;
 }
 
 .row {
