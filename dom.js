@@ -22,37 +22,24 @@ function displayDefaultList(x) {
 function displayUniqueList(x, y) {
   //loop through default list
   for (let i = 0; i < x.length; i++) {
-    if (x[i].list != y) {
-      continue;
-    } else {
-      let newItems = document.createElement("div");
-      newItems.setAttribute("class", "todoCard");
-      //loop through each object within the list
-      for (let key in x[i]) {
-        //add obbject properties to todo item
-        //skip todo list property
-        if ([key] == "list") {
-          continue;
-        }
-        let todoItemContent = document.createElement("p");
-        todoItemContent.innerText = `${x[i][key]}`;
-        newItems.appendChild(todoItemContent);
+    let newItems = document.createElement("div");
+    newItems.setAttribute("class", "todoCard");
+    //loop through each object within the list
+    for (let key in x[i]) {
+      //add obbject properties to todo item
+      //skip todo list property
+      if ([key] == "list") {
+        continue;
       }
-
-      //add todo item to body
-      document.querySelector("#rightColumn").appendChild(newItems);
+      let todoItemContent = document.createElement("p");
+      todoItemContent.innerText = `${x[i][key]}`;
+      newItems.appendChild(todoItemContent);
     }
-  }
-  let s = document.querySelectorAll(".todoCard");
-  addDropdownList(s);
-  let options = document.querySelectorAll(".options");
-  let lists = document.querySelectorAll(".dropdownList");
-  for (let x = 0; x < lists.length; x++) {
-    for (let j = 0; j < options.length; j++) {
-      let newListOption = document.createElement("option");
-      newListOption.setAttribute("value", options[j].innerText);
-      newListOption.innerText = `${options[j].innerText}`;
-      lists[x].appendChild(newListOption);
+
+    //add todo item to body
+    document.querySelector("#rightColumn").appendChild(newItems);
+    if (x[i].list != y) {
+      newItems.style.display = "none";
     }
   }
 }
@@ -65,10 +52,10 @@ function addDeleteBtn() {
   }
 }
 
-function addDropdownList(a) {
+function addDropdownList() {
   let newItem = document.querySelectorAll(".todoCard");
 
-  for (let i = 0; i < a.length; i++) {
+  for (let i = 0; i < newItem.length; i++) {
     //adds dropdown list of current lists
     let dropdownList = document.createElement("select");
     dropdownList.setAttribute("class", "dropdownList");
@@ -113,8 +100,12 @@ function resetDropdown() {
 
 function resetRightColumn() {
   let todoItems = document.querySelectorAll(".todoCard");
-  for (let i = 0; i < todoItems.length; i++) {
-    todoItems[i].remove();
+  if (todoItems.length === 0) {
+    return;
+  } else {
+    for (let i = 0; i < todoItems.length; i++) {
+      todoItems[i].remove();
+    }
   }
 }
 

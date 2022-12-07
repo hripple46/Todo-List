@@ -35,6 +35,7 @@ function eventListenerListNames(f) {
     dropdown[i].addEventListener("change", () => {
       let object = f[i];
       object.list = dropdown[i].value;
+      console.log(f);
     });
   }
 }
