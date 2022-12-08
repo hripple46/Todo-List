@@ -225,6 +225,8 @@ function showListItems() {
       //add unique ID to dropdownlist
       addIDDropdownList();
       addIDDeleteBtn();
+      collapseDetails();
+
       removeItemFromArray(defaultList);
       removeTodoItemofUniqueList(
         resetRightColumn,
@@ -263,6 +265,8 @@ defaultDom.addEventListener("click", () => {
   //add unique ID to dropdownlist
   addIDDropdownList();
   addIDDeleteBtn();
+  collapseDetails();
+
   //removes DOM todo item on click, invoking functions as parameters keeps page dynamic on deletion of items
   removeItemFromArray(defaultList);
   removeTodoItem(

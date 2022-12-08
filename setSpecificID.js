@@ -1,8 +1,9 @@
 function addIDTodoCard() {
   let todoList = document.querySelectorAll(".todoCard");
-
+  let hiddenDetails = document.querySelectorAll(".collapseDiv");
   for (let i = 0; i < todoList.length; i++) {
     todoList[i].setAttribute("id", `todoItem${i}`);
+    hiddenDetails[i].setAttribute("id", `collapseDiv${i}`);
   }
 }
 function addIDDropdownList() {

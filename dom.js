@@ -3,6 +3,9 @@ function displayDefaultList(x) {
   for (let i = 0; i < x.length; i++) {
     let newItem = document.createElement("div");
     newItem.setAttribute("class", "todoCard");
+    let collapseDiv = document.createElement("div");
+    collapseDiv.setAttribute("class", "collapseDiv");
+    collapseDiv.style.display = "none";
     //loop through each object within the list
     for (let key in x[i]) {
       //add obbject properties to todo item
@@ -10,17 +13,20 @@ function displayDefaultList(x) {
       if ([key] == "list") {
         continue;
       }
-      let todoItemContent = document.createElement("p");
-      todoItemContent.innerText = `${x[i][key]}`;
-      newItem.appendChild(todoItemContent);
-      if ([key] != "title") {
-        todoItemContent.style.display = "none";
-        todoItemContent.setAttribute("class", `collapse${i}`);
+      if ([key] == "title") {
+        let todoItemContent = document.createElement("p");
+        todoItemContent.innerText = `${x[i][key]}`;
+        newItem.appendChild(todoItemContent);
+      } else {
+        let todoItemContent = document.createElement("p");
+        todoItemContent.innerText = `${x[i][key]}`;
+        collapseDiv.appendChild(todoItemContent);
       }
     }
 
     //add todo item to body
     document.querySelector("#rightColumn").appendChild(newItem);
+    newItem.appendChild(collapseDiv);
   }
 }
 function displayUniqueList(x, y) {
@@ -28,6 +34,9 @@ function displayUniqueList(x, y) {
   for (let i = 0; i < x.length; i++) {
     let newItems = document.createElement("div");
     newItems.setAttribute("class", "todoCard");
+    let collapseDiv = document.createElement("div");
+    collapseDiv.setAttribute("class", "collapseDiv");
+    collapseDiv.style.display = "none";
     //loop through each object within the list
     for (let key in x[i]) {
       //add obbject properties to todo item
@@ -35,17 +44,20 @@ function displayUniqueList(x, y) {
       if ([key] == "list") {
         continue;
       }
-      let todoItemContent = document.createElement("p");
-      todoItemContent.innerText = `${x[i][key]}`;
-      newItems.appendChild(todoItemContent);
-      if ([key] != "title") {
-        todoItemContent.style.display = "none";
-        todoItemContent.setAttribute("class", `collapse${i}`);
+      if ([key] == "title") {
+        let todoItemContent = document.createElement("p");
+        todoItemContent.innerText = `${x[i][key]}`;
+        newItems.appendChild(todoItemContent);
+      } else {
+        let todoItemContent = document.createElement("p");
+        todoItemContent.innerText = `${x[i][key]}`;
+        collapseDiv.appendChild(todoItemContent);
       }
     }
 
     //add todo item to body
     document.querySelector("#rightColumn").appendChild(newItems);
+    newItems.appendChild(collapseDiv);
     if (x[i].list != y) {
       newItems.style.display = "none";
     }
@@ -108,20 +120,29 @@ function resetDropdown() {
 
 function resetRightColumn() {
   let todoItems = document.querySelectorAll(".todoCard");
+  let hiddenDetails = document.querySelectorAll(".collapseDiv");
   if (todoItems.length === 0) {
     return;
   } else {
     for (let i = 0; i < todoItems.length; i++) {
       todoItems[i].remove();
+      hiddenDetails[i].remove();
     }
   }
 }
 function collapseDetails() {
   let grabCards = document.querySelectorAll(".todoCard");
+  let displayHiddenDiv = document.querySelectorAll(".collapseDiv");
+
   for (let i = 0; i < grabCards.length; i++) {
     grabCards[i].addEventListener("click", () => {
-      let expandContent = document.querySelectorAll(`.collapse${i}`);
+      if (displayHiddenDiv[i].style.display === "none") {
+        displayHiddenDiv[i].style.display = "block";
+      } else {
+        displayHiddenDiv[i].style.display = "none";
+      }
 
+      let expandContent = document.querySelectorAll(`.collapse${i}`);
       for (let detail = 0; detail < expandContent.length; detail++) {
         expandContent[detail].style.gridRowStart = "2";
         expandContent[detail].style.gridRowEnd = "3";
