@@ -13,6 +13,10 @@ function displayDefaultList(x) {
       let todoItemContent = document.createElement("p");
       todoItemContent.innerText = `${x[i][key]}`;
       newItem.appendChild(todoItemContent);
+      if ([key] != "title") {
+        todoItemContent.style.display = "none";
+        todoItemContent.setAttribute("class", `collapse${i}`);
+      }
     }
 
     //add todo item to body
@@ -34,6 +38,10 @@ function displayUniqueList(x, y) {
       let todoItemContent = document.createElement("p");
       todoItemContent.innerText = `${x[i][key]}`;
       newItems.appendChild(todoItemContent);
+      if ([key] != "title") {
+        todoItemContent.style.display = "none";
+        todoItemContent.setAttribute("class", `collapse${i}`);
+      }
     }
 
     //add todo item to body
@@ -108,6 +116,24 @@ function resetRightColumn() {
     }
   }
 }
+function collapseDetails() {
+  let grabCards = document.querySelectorAll(".todoCard");
+  for (let i = 0; i < grabCards.length; i++) {
+    grabCards[i].addEventListener("click", () => {
+      let expandContent = document.querySelectorAll(`.collapse${i}`);
+
+      for (let detail = 0; detail < expandContent.length; detail++) {
+        expandContent[detail].style.gridRowStart = "2";
+        expandContent[detail].style.gridRowEnd = "3";
+        if (expandContent[detail].style.display === "none") {
+          expandContent[detail].style.display = "block";
+        } else {
+          expandContent[detail].style.display = "none";
+        }
+      }
+    });
+  }
+}
 
 export {
   displayDefaultList,
@@ -117,4 +143,5 @@ export {
   addDropdownList,
   addDeleteBtn,
   displayUniqueList,
+  collapseDetails,
 };

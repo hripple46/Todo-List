@@ -13,6 +13,7 @@ import {
   addDropdownList,
   addDeleteBtn,
   displayUniqueList,
+  collapseDetails,
 } from "./dom.js";
 import {
   displayNewListForm,
@@ -73,6 +74,7 @@ hideForm.addEventListener("click", () => {
   //add unique ID to dropdownlist
   addIDDropdownList();
   addIDDeleteBtn();
+  collapseDetails();
   eventListenerListNames(defaultList);
   //removes DOM todo item on click, invoking functions as parameters keeps page dynamic on deletion of items
   removeItemFromArray(defaultList);
@@ -85,12 +87,13 @@ hideForm.addEventListener("click", () => {
     addIDTodoCard,
     addIDDeleteBtn,
     addIDDropdownList,
+    collapseDetails,
     removeItemFromArray,
     removeTodoItem
   );
 });
 //this function deletes a card and resets page based on contents of array after splicing deleted object
-function removeTodoItem(hi, b, c, d, e, f, g, h, j, k) {
+function removeTodoItem(hi, b, c, d, e, f, g, h, yo, j, k) {
   let deleteBtns = document.querySelectorAll(".deleteBtn");
   for (let i = 0; i < deleteBtns.length; i++) {
     deleteBtns[i].addEventListener("click", () => {
@@ -103,6 +106,7 @@ function removeTodoItem(hi, b, c, d, e, f, g, h, j, k) {
       f();
       g();
       h();
+      yo();
       j(defaultList);
       k(
         resetRightColumn,
@@ -113,6 +117,7 @@ function removeTodoItem(hi, b, c, d, e, f, g, h, j, k) {
         addIDTodoCard,
         addIDDeleteBtn,
         addIDDropdownList,
+        collapseDetails,
         removeItemFromArray,
         removeTodoItem
       );
@@ -121,7 +126,7 @@ function removeTodoItem(hi, b, c, d, e, f, g, h, j, k) {
   }
 }
 //duplicating above function with minor change if delete button is clicked while the default list is
-function removeTodoItemofUniqueList(hi, b, c, d, e, f, g, h, j, k) {
+function removeTodoItemofUniqueList(hi, b, c, d, e, f, g, h, yo, j, k) {
   let deleteBtns = document.querySelectorAll(".deleteBtn");
   for (let i = 0; i < deleteBtns.length; i++) {
     deleteBtns[i].addEventListener("click", () => {
@@ -134,6 +139,7 @@ function removeTodoItemofUniqueList(hi, b, c, d, e, f, g, h, j, k) {
       f();
       g();
       h();
+      yo();
       j(defaultList);
       k(
         resetRightColumn,
@@ -144,6 +150,7 @@ function removeTodoItemofUniqueList(hi, b, c, d, e, f, g, h, j, k) {
         addIDTodoCard,
         addIDDeleteBtn,
         addIDDropdownList,
+        collapseDetails,
         removeItemFromArray,
 
         removeTodoItem
@@ -228,6 +235,7 @@ function showListItems() {
         addIDTodoCard,
         addIDDeleteBtn,
         addIDDropdownList,
+        collapseDetails,
         removeItemFromArray,
 
         removeTodoItemofUniqueList
@@ -266,6 +274,7 @@ defaultDom.addEventListener("click", () => {
     addIDTodoCard,
     addIDDeleteBtn,
     addIDDropdownList,
+    collapseDetails,
     removeItemFromArray,
     removeTodoItem
   );
