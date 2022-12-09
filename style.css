@@ -106,8 +106,10 @@ button {
   background-color: rgba(221, 28, 26, 0.1);
   border: 1px solid transparent;
   border-radius: 50%;
+  grid-column: 4 / 5;
 }
 .deleteBtn:hover {
+  grid-column: 4/5;
   height: 30px;
   width: 30px;
   display: flex;
