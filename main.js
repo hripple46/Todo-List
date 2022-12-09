@@ -31,7 +31,12 @@ import {
   addIDDeleteBtn,
 } from "./setSpecificID.js";
 import { removeItemFromArray } from "./arrayManipulation.js";
-import { storeObject, storeList } from "./localStorage.js";
+import {
+  storeObject,
+  storeList,
+  deleteAllStoredItems,
+  saveItemsBeforeExit,
+} from "./localStorage.js";
 
 //global variables
 const displayForm = document.querySelector("#displayForm");
@@ -50,6 +55,8 @@ let newItem = [];
 //extra arrays for both objects and list names to be looped over
 let storedListNames = [];
 let storedObjects = [];
+
+//this functino will save todo items on user exit
 
 //this function fires on webpage load
 window.addEventListener("load", () => {
@@ -70,6 +77,7 @@ window.addEventListener("load", () => {
       listNames.push(storedList);
     }
   }
+  deleteAllStoredItems();
   displayDefaultList(defaultList);
   addDropdownList(defaultList);
 
@@ -86,10 +94,13 @@ window.addEventListener("load", () => {
   eventListenerListNames(defaultList);
   showListItems(resetRightColumn);
 
+  saveItemsBeforeExit(defaultList);
+
   //removes DOM todo item on click, invoking functions as parameters keeps page dynamic on deletion of items
   removeItemFromArray(defaultList);
   removeTodoItem(
     resetRightColumn,
+    deleteAllStoredItems,
     displayDefaultList,
     addDropdownList,
     addListNameOption,
@@ -98,6 +109,7 @@ window.addEventListener("load", () => {
     addIDDeleteBtn,
     addIDDropdownList,
     collapseDetails,
+    saveItemsBeforeExit,
     removeItemFromArray,
     removeTodoItem
   );
@@ -143,6 +155,7 @@ hideForm.addEventListener("click", () => {
   removeItemFromArray(defaultList);
   removeTodoItem(
     resetRightColumn,
+    deleteAllStoredItems,
     displayDefaultList,
     addDropdownList,
     addListNameOption,
@@ -151,17 +164,34 @@ hideForm.addEventListener("click", () => {
     addIDDeleteBtn,
     addIDDropdownList,
     collapseDetails,
+    saveItemsBeforeExit,
     removeItemFromArray,
     removeTodoItem
   );
 });
 //this function deletes a card and resets page based on contents of array after splicing deleted object
-function removeTodoItem(hi, b, c, d, e, f, g, h, yo, j, k) {
+function removeTodoItem(
+  hi,
+  deleteAll,
+  b,
+  c,
+  d,
+  e,
+  f,
+  g,
+  h,
+  yo,
+  saveItems,
+  j,
+  k
+) {
   let deleteBtns = document.querySelectorAll(".deleteBtn");
   for (let i = 0; i < deleteBtns.length; i++) {
     deleteBtns[i].addEventListener("click", () => {
       document.querySelector(`#todoItem${i}`).remove();
+
       hi();
+      deleteAll();
       b(defaultList);
       c(defaultList);
       d(listNames);
@@ -170,9 +200,11 @@ function removeTodoItem(hi, b, c, d, e, f, g, h, yo, j, k) {
       g();
       h();
       yo();
+      saveItems(defaultList);
       j(defaultList);
       k(
         resetRightColumn,
+        deleteAllStoredItems,
         displayDefaultList,
         addDropdownList,
         addListNameOption,
@@ -181,6 +213,7 @@ function removeTodoItem(hi, b, c, d, e, f, g, h, yo, j, k) {
         addIDDeleteBtn,
         addIDDropdownList,
         collapseDetails,
+        saveItemsBeforeExit,
         removeItemFromArray,
         removeTodoItem
       );
@@ -188,12 +221,28 @@ function removeTodoItem(hi, b, c, d, e, f, g, h, yo, j, k) {
   }
 }
 //duplicating above function with minor change if delete button is clicked while the default list is
-function removeTodoItemofUniqueList(hi, b, c, d, e, f, g, h, yo, j, k) {
+function removeTodoItemofUniqueList(
+  hi,
+  deleteAll,
+  b,
+  c,
+  d,
+  e,
+  f,
+  g,
+  h,
+  yo,
+  saveItems,
+  j,
+  k
+) {
   let deleteBtns = document.querySelectorAll(".deleteBtn");
   for (let i = 0; i < deleteBtns.length; i++) {
     deleteBtns[i].addEventListener("click", () => {
       document.querySelector(`#todoItem${i}`).remove();
+
       hi();
+      deleteAll();
       b(defaultList, selectedName);
       c(defaultList);
       d(listNames);
@@ -202,9 +251,11 @@ function removeTodoItemofUniqueList(hi, b, c, d, e, f, g, h, yo, j, k) {
       g();
       h();
       yo();
+      saveItems(defaultList);
       j(defaultList);
       k(
         resetRightColumn,
+        deleteAllStoredItems,
         displayUniqueList,
         addDropdownList,
         addListNameOption,
@@ -213,6 +264,7 @@ function removeTodoItemofUniqueList(hi, b, c, d, e, f, g, h, yo, j, k) {
         addIDDeleteBtn,
         addIDDropdownList,
         collapseDetails,
+        saveItemsBeforeExit,
         removeItemFromArray,
 
         removeTodoItem
@@ -267,7 +319,9 @@ function showListItems() {
       removeItemFromArray(defaultList);
       removeTodoItemofUniqueList(
         resetRightColumn,
+        deleteAllStoredItems,
         displayUniqueList,
+
         addDropdownList,
         addListNameOption,
         addDeleteBtn,
@@ -275,9 +329,10 @@ function showListItems() {
         addIDDeleteBtn,
         addIDDropdownList,
         collapseDetails,
+        saveItemsBeforeExit,
         removeItemFromArray,
 
-        removeTodoItemofUniqueList
+        removeTodoItem
       );
       let x = document.querySelectorAll(".sidebarListItem");
     });
@@ -305,6 +360,7 @@ defaultDom.addEventListener("click", () => {
   removeItemFromArray(defaultList);
   removeTodoItem(
     resetRightColumn,
+    deleteAllStoredItems,
     displayDefaultList,
     addDropdownList,
     addListNameOption,
@@ -313,6 +369,7 @@ defaultDom.addEventListener("click", () => {
     addIDDeleteBtn,
     addIDDropdownList,
     collapseDetails,
+    saveItemsBeforeExit,
     removeItemFromArray,
     removeTodoItem
   );
