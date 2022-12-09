@@ -23,6 +23,7 @@ import {
   addNewListNametoArray,
   eventListenerListNames,
   displayList,
+  displayStoredList,
 } from "./addLists.js";
 import {
   addIDTodoCard,
@@ -30,7 +31,9 @@ import {
   addIDDeleteBtn,
 } from "./setSpecificID.js";
 import { removeItemFromArray } from "./arrayManipulation.js";
+import { storeObject, storeList } from "./localStorage.js";
 
+//global variables
 const displayForm = document.querySelector("#displayForm");
 let hideForm = document.querySelector("#submit");
 const newList = document.querySelector("#newFolder");
@@ -41,10 +44,66 @@ let defaultDom = document.querySelector("#defaultList");
 
 let defaultList = [];
 let listNames = [];
+
 let selectedName = "";
-document.body.addEventListener("click", () => {
-  console.log(defaultList);
+let newItem = [];
+//extra arrays for both objects and list names to be looped over
+let storedListNames = [];
+let storedObjects = [];
+
+//this function fires on webpage load
+window.addEventListener("load", () => {
+  let storedObjects = window.localStorage.length;
+  for (let objects = 0; objects < storedObjects; objects++) {
+    let parsedItem = "";
+    let storedList = "";
+    let keyString = localStorage.key(objects);
+    console.log(keyString);
+    if (keyString.includes("list") != true) {
+      let storedItem = localStorage.getItem(keyString);
+      parsedItem = JSON.parse(storedItem);
+      console.log(storedItem);
+      defaultList.push(parsedItem);
+    } else {
+      storedList = localStorage.getItem(keyString);
+
+      listNames.push(storedList);
+    }
+  }
+  displayDefaultList(defaultList);
+  addDropdownList(defaultList);
+
+  addDeleteBtn();
+  //add unique add to todoItem
+  addIDTodoCard();
+  //add unique ID to dropdownlist
+  addIDDropdownList();
+  addIDDeleteBtn();
+  collapseDetails();
+  displayStoredList(listNames);
+  let x = document.querySelectorAll(".sidebarListItem");
+  addListNameOption(listNames);
+  eventListenerListNames(defaultList);
+  showListItems(resetRightColumn);
+
+  //removes DOM todo item on click, invoking functions as parameters keeps page dynamic on deletion of items
+  removeItemFromArray(defaultList);
+  removeTodoItem(
+    resetRightColumn,
+    displayDefaultList,
+    addDropdownList,
+    addListNameOption,
+    addDeleteBtn,
+    addIDTodoCard,
+    addIDDeleteBtn,
+    addIDDropdownList,
+    collapseDetails,
+    removeItemFromArray,
+    removeTodoItem
+  );
 });
+
+document.body.addEventListener("click", () => {});
 
 //event listener for opening new item form
 displayForm.addEventListener("click", () => {
@@ -54,12 +113,16 @@ displayForm.addEventListener("click", () => {
 
 //event listener for new todo item submission
 hideForm.addEventListener("click", () => {
+  newItem = [];
   //reset the webpage to avoid duplicate todo items
   resetRightColumn();
   //grab data from form
   pullToDoItemData();
   //create Todo Item Object
-  createObject(defaultList);
+  createObject(defaultList, newItem);
+  //grab new object
+  //store object in local storage
+  storeObject(defaultList);
   //reset form
   resetForm();
   //hide form
@@ -121,7 +184,6 @@ function removeTodoItem(hi, b, c, d, e, f, g, h, yo, j, k) {
         removeItemFromArray,
         removeTodoItem
       );
-      console.log(defaultList);
     });
   }
 }
@@ -171,39 +233,15 @@ newListSubmit.addEventListener("click", () => {
   //reset dropdown options to avoid duplicates
   resetDropdown();
   addNewListNametoArray(listNames);
+  storeList(listNames);
+
   addDropdownList(defaultList);
   addIDDropdownList();
   let x = document.querySelectorAll(".sidebarListItem");
-  removeEventListener(x);
   addListNameOption(listNames);
   eventListenerListNames(defaultList);
   showListItems(resetRightColumn);
 });
-function removeEventListener(a) {
-  for (let i = 0; i < a.length; i++) {
-    a[i].removeEventListener("click", () => {
-      let nameofList = sideBarLists[i].innerText;
-      nameofList;
-      selectedName = "";
-      selectedName = nameofList;
-      selectedName;
-      resetRightColumn();
-      displayUniqueList(defaultList, selectedName);
-      eventListenerListNames(defaultList);
-      removeTodoItem(
-        resetRightColumn,
-        displayDefaultList,
-        addDropdownList,
-        addListNameOption,
-        addDeleteBtn,
-        addIDTodoCard,
-        addIDDeleteBtn,
-        addIDDropdownList,
-        eventListenerListNames
-      );
-    });
-  }
-}
 
 function showListItems() {
   let sideBarLists = document.querySelectorAll(".sidebarListItem");
@@ -211,7 +249,6 @@ function showListItems() {
   for (let i = 0; i < sideBarLists.length; i++) {
     sideBarLists[i].addEventListener("click", () => {
       let nameofList = sideBarLists[i].innerText;
-      removeEventListener(sideBarLists);
       selectedName = "";
       selectedName = nameofList;
       resetRightColumn();
@@ -243,9 +280,6 @@ function showListItems() {
         removeTodoItemofUniqueList
       );
       let x = document.querySelectorAll(".sidebarListItem");
-
-      removeEventListener(x);
-      console.log(defaultList);
     });
   }
 }
@@ -282,5 +316,4 @@ defaultDom.addEventListener("click", () => {
     removeItemFromArray,
     removeTodoItem
   );
-  console.log(defaultList);
 });

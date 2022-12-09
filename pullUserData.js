@@ -9,17 +9,26 @@ function pullToDoItemData() {
   newTodoItem = [];
   let inputs = document.querySelectorAll(".todoInput");
   for (let i = 0; i < inputs.length; i++) {
+    console.log(inputs[i].value);
+    if (inputs[i].value == null) {
+      console.log("No Good");
+    }
     newTodoItem.push(`${inputs[i].value}`);
+    console.log(inputs[i].value);
   }
 }
-function createObject(x) {
+
+function createObject(x, y) {
   let userTodoItem = todoItem(
     newTodoItem[0],
     newTodoItem[1],
     newTodoItem[2],
-    newTodoItem[3]
+    newTodoItem[3],
+    newTodoItem[4]
   );
+
   x.push(userTodoItem);
+  y.push(userTodoItem);
 }
 
 function hideTodoItemForm() {

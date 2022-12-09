@@ -26,6 +26,18 @@ function displayList(list) {
   listElement.appendChild(p);
   sidebar.appendChild(listElement);
 }
+function displayStoredList(listArray) {
+  for (let list = 0; list < listArray.length; list++) {
+    let sidebar = document.querySelector(".projectContainer");
+    let listElement = document.createElement("div");
+    listElement.setAttribute("class", "sidebarListItem");
+    let p = document.createElement("p");
+    p.innerText = `${listArray[list]}`;
+    p.setAttribute("class", "options");
+    listElement.appendChild(p);
+    sidebar.appendChild(listElement);
+  }
+}
 
 function eventListenerListNames(f) {
   let dropdown = document.querySelectorAll("select");
@@ -35,9 +47,16 @@ function eventListenerListNames(f) {
     dropdown[i].addEventListener("change", () => {
       let object = f[i];
       object.list = dropdown[i].value;
-      console.log(f);
+      updateStoredObject(i, dropdown);
     });
   }
+}
+function updateStoredObject(index, dropdown) {
+  let storedObject = localStorage.getItem(`${index}`);
+  storedObject = JSON.parse(storedObject);
+  storedObject.list = dropdown[index].value;
+  localStorage.setItem(`${index}`, JSON.stringify(storedObject));
+  console.log(storedObject);
 }
 
 //function assignListNames
@@ -50,4 +69,5 @@ export {
   addNewListNametoArray,
   eventListenerListNames,
   displayList,
+  displayStoredList,
 };
